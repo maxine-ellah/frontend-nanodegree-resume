@@ -1,10 +1,12 @@
+  //page titles
   var name = "Maxine Ellah";
   var formattedName = HTMLheaderName.replace("%data%", name);
   var role = "Web Developer";
   var formattedRole = HTMLheaderRole.replace("%data%", role);
-  $("#header").prepend(formattedName);
+  $("#header").append(formattedName);
   $("#header").append(formattedRole);
 
+//work object
 var work = {
   "jobs": [
   {
@@ -31,6 +33,7 @@ var work = {
   ]
 };
 
+//work function to display work experience
 function displayWork() {
 for (job in work.jobs) {
   $("#workExperience").append(HTMLworkStart);
@@ -51,9 +54,10 @@ for (job in work.jobs) {
 }
 }
 
+//call function
 displayWork();
 
-
+//internationalise name function
 function inName(name) {
   name = name.trim().split(" ");
   console.log(name);
@@ -63,19 +67,98 @@ function inName(name) {
 
   return name[0] +" "+name[1];
 }
-
+//internationalise button
 $("#main").append(internationalizeButton);
 
 //google map
 $("#mapDiv").append(googleMap);
 
+//education object
+var education = {
+  "schools": [
+  {
+    "name": "WelTec",
+    "city": "Wellington",
+    "degree": "BA",
+    "subject": "Creative Technologies",
+    "dates": "2008-2011"
+  },
+  {
+    "name": "Te Wānanga o Raukawa",
+    "city": "Otaki",
+    "degree": "Certificate",
+    "subject": "Te Reo Māori",
+    "dates": 2015
+    }
+  ],
+  "onlineCourses":[
+  {
+  "title": "Javascript Basics",
+  "school": "Udacity",
+  "dates": "2016",
+  "url": "https://www.udacity.com/course/viewer#!/c-ud804"
+  },
+  {
+  "title": "Intro to HTML and CSS",
+  "school": "Udacity",
+  "dates": "2016",
+  "url": "https://www.udacity.com/course/viewer#!/c-ud304"
+  }
+  ]
+}
+
+//display education function to show  education
+function displayEducation() {
+for (school in education.schools) {
+  $("#education").append(HTMLschoolStart);
+
+  var formattedschoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+  $(".education-entry:first").append(formattedschoolName);
+
+  var formattedDegree = HTMLschoolDegree.replace("-- %data%", education.schools[school].degree);
+  $(".education-entry:first").append(formattedDegree);
+
+  var formattedDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
+  $(".education-entry:first").append(formattedDates);
+
+  var formattedschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].city);
+  $(".education-entry:first").append(formattedschoolLocation);
+  
+  var formattedSubject = HTMLschoolMajor.replace("Major: %data%", education.schools[school].subject);
+  $(".education-entry:first").append(formattedSubject);
+
+} //online courses section
+for (onlineCourse in education.onlineCourses) {
+$(".education-entry:last").append(HTMLonlineClasses);
+
+var formattedonlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[onlineCourse].title);
+$(".education-entry:last").append(formattedonlineTitle);
+
+var formattedonlineSchool = HTMLonlineSchool.replace("- %data%", education.onlineCourses[onlineCourse].school);
+$(".education-entry:last").append(formattedonlineSchool);
+
+var formattedonlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[onlineCourse].dates);
+$(".education-entry:last").append(formattedonlineDates);
+
+var formattedonlineURL = HTMLonlineURL.replace("#",education.onlineCourses[onlineCourse].url).replace("%data%","link");
+$(".education-entry:last").append(formattedonlineURL);
+
+   
+}
+}
+// calling education function
+ displayEducation();
+
+
+//projects object
 var projects = {
+
   "projects": [
   {
     "title":"Javascript Racer Game",
     "dates":"February 2016",
     "description":"I built a racer game using Javascript.",
-    "images":"images/sushivtaco.png"
+    "images": ["/sushivtaco.png"]
   },
   {
     "title":"Project 2",
@@ -85,7 +168,7 @@ var projects = {
   }
   ]
 }
-
+//display projects function
 projects.display = function() {
 
   for (project in projects.projects) {
@@ -108,53 +191,26 @@ projects.display = function() {
   }
 }
 }
-
+//calling projects function
 projects.display();
 
+//bio object
 var bio = {
   "name": "Maxine Ellah",
   "role": "Web Developer",
   "contact": [{
     "email": "maxine.ellah@gmail.com",
     "github": "maxine-ellah",
-    "location": "Wellington"
+    "location": "Wellington",
+    "blog": "http://maxine-ellah.github.io/"
   }],
   "skills": ["cooking", "languages",
    "graphic design", "being nice to people"],
-  "picture": "images/maxine.jpg",
+  "picture": "../images/maxine.jpg",
   "welcomeMessage": "Hi! Welcome to my resume."
 }
 
-var education = {
-  "schools": [
-  {
-    "name": "WelTec",
-    "city": "Wellington",
-    "degree": "BA Creative Tech"
-  },
-  {
-    "name": "Te Wananga O Raukawa",
-    "city": "Otaki",
-    "degree": "Certificate in Te Reo Maori"
-    }
-  ],
-  "onlineCourses":[
-  {
-  "title": "Javascript Basics",
-  "school": "Udacity",
-  "dates": "2016",
-  "url": "https://www.udacity.com/course/viewer#!/c-ud804"
-  },
-  {
-  "title": "Intro to HTML and CSS",
-  "school": "Udacity",
-  "dates": "2016",
-  "url": "https://www.udacity.com/course/viewer#!/c-ud304"
-  }
-  ]
-}
-
-
+//if statement to display  skills array in bio object
 if (bio.skills.length > 0) {
 
   $("#header").append(HTMLskillsStart);
@@ -169,29 +225,40 @@ if (bio.skills.length > 0) {
   $("#skills").append(formattedSkills);
 }
 
+//if statement to display contact array in bio object
 if (bio.contact.length > 0) {
 
 $("#main").append(HTMLcontactGeneric);
 
+  var blog = "http://maxine-ellah.github.io/";
+  var result = blog.link("http://maxine-ellah.github.io/");
   var formattedContact = HTMLemail.replace("%data%", "maxine.ellah@gmail.com");
   $("#topContacts").append(formattedContact);
   formattedContact = HTMLgithub.replace("%data%", "maxine-ellah");
   $("#topContacts").append(formattedContact);
   formattedContact = HTMLlocation.replace("%data%", "Wellington");
   $("#topContacts").append(formattedContact);
+  formattedContact = HTMLblog.replace("%data%", result);
+  $("#topContacts").append(formattedContact);
 }
-
+//ifstatement to display same contact info array, but in the footer of
 if (bio.contact.length > 0) {
 
 $("#footerContacts").append(HTMLcontactGeneric);
 
+  var blog = "http://maxine-ellah.github.io/";
+  var result = blog.link("http://maxine-ellah.github.io/");
   var formattedContact = HTMLemail.replace("%data%", "maxine.ellah@gmail.com");
   $("#lets-connect").append(formattedContact);
   formattedContact = HTMLgithub.replace("%data%", "maxine-ellah");
   $("#lets-connect").append(formattedContact);
   formattedContact = HTMLlocation.replace("%data%", "Wellington");
   $("#lets-connect").append(formattedContact);
+  formattedContact = HTMLblog.replace("%data%", result);
+  $("#lets-connect").append(formattedContact);
 }
+
+
 
 
 
