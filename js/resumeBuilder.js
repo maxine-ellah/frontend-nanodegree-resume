@@ -1,10 +1,10 @@
   //page titles
-  var name = "Maxine Ellah";
-  var formattedName = HTMLheaderName.replace("%data%", name);
-  var role = "Web Developer";
-  var formattedRole = HTMLheaderRole.replace("%data%", role);
-  $("#header").append(formattedName);
-  $("#header").append(formattedRole);
+  //var name = "Maxine Ellah";
+  //var formattedName = HTMLheaderName.replace("%data%", name);
+  //var role = "Web Developer";
+  //var formattedRole = HTMLheaderRole.replace("%data%", role);
+  //$("#header").append(formattedName);
+  //$("#header").append(formattedRole);
 
 //work object
 var work = {
@@ -68,7 +68,7 @@ function inName(name) {
   return name[0] +" "+name[1];
 }
 //internationalise button
-$("#main").append(internationalizeButton);
+//$("#main").append(internationalizeButton);
 
 //google map
 $("#mapDiv").append(googleMap);
@@ -78,14 +78,14 @@ var education = {
   "schools": [
   {
     "name": "WelTec",
-    "city": "Wellington",
+    "location": "Wellington",
     "degree": "BA",
     "subject": "Creative Technologies",
     "dates": "2008-2011"
   },
   {
     "name": "Te Wānanga o Raukawa",
-    "city": "Otaki",
+    "location": "Otaki",
     "degree": "Certificate",
     "subject": "Te Reo Māori",
     "dates": 2015
@@ -121,7 +121,7 @@ for (school in education.schools) {
   var formattedDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
   $(".education-entry:first").append(formattedDates);
 
-  var formattedschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].city);
+  var formattedschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
   $(".education-entry:first").append(formattedschoolLocation);
   
   var formattedSubject = HTMLschoolMajor.replace("Major: %data%", education.schools[school].subject);
@@ -158,7 +158,7 @@ var projects = {
     "title":"Javascript Racer Game",
     "dates":"February 2016",
     "description":"I built a racer game using Javascript.",
-    "images": ["/sushivtaco.png"]
+    "images": ["sushivtaco.png"]
   },
   {
     "title":"Project 2",
@@ -198,65 +198,73 @@ projects.display();
 var bio = {
   "name": "Maxine Ellah",
   "role": "Web Developer",
-  "contact": [{
+  "contacts": {
     "email": "maxine.ellah@gmail.com",
     "github": "maxine-ellah",
     "location": "Wellington",
     "blog": "http://maxine-ellah.github.io/"
-  }],
+  },
   "skills": ["cooking", "languages",
    "graphic design", "being nice to people"],
-  "picture": "../images/maxine.jpg",
+  "picture": ["images/maxine.jpg"],
   "welcomeMessage": "Hi! Welcome to my resume."
+};
+
+//bio display function declaration
+bio.display = function() {
+  var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+  $("#header").prepend(formattedWelcome);
+  var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+  $("#header").prepend(formattedRole);
+  var formattedName = HTMLheaderName.replace("%data%", bio.name);
+  $("#header").prepend(formattedName);
+  var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+  $("#topContacts, #footerContacts").append(formattedEmail);
+  var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+  $("#topContacts, #footerContacts").append(formattedGithub);
+  var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+  $("#topContacts, #footerContacts").append(formattedLocation);
+  var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog);
+  $("#topContacts, #footerContacts").append(formattedBlog);
+  var formattedBiopic = HTMLbioPic.replace("%data%", bio.picture);
+  $("#header").append(formattedBiopic);
+  
+  //if statement to display  skills array in bio object
+  if (bio.skills.length > 0) {
+  
+    $("#header").append(HTMLskillsStart);
+
+    for (var skill in bio.skills) {
+      var formattedSkills = HTMLskills.replace("%data%", bio.skills[skill]);
+      $("#skills").append(formattedSkills);
+
+    }
+  }
 }
+// invocation of bio display function
+bio.display();
 
-//if statement to display  skills array in bio object
-if (bio.skills.length > 0) {
 
-  $("#header").append(HTMLskillsStart);
-
-  var formattedSkills = HTMLskills.replace("%data%", bio.skills[0]);
-  $("#skills").append(formattedSkills);
-  formattedSkills = HTMLskills.replace("%data%", bio.skills[1]);
-  $("#skills").append(formattedSkills);
-  formattedSkills = HTMLskills.replace("%data%", bio.skills[2]);
-  $("#skills").append(formattedSkills);
-  formattedSkills = HTMLskills.replace("%data%", bio.skills[3]);
-  $("#skills").append(formattedSkills);
-}
 
 //if statement to display contact array in bio object
-if (bio.contact.length > 0) {
+if (bio.contacts.length > 0) {
 
 $("#main").append(HTMLcontactGeneric);
 
   var blog = "http://maxine-ellah.github.io/";
   var result = blog.link("http://maxine-ellah.github.io/");
-  var formattedContact = HTMLemail.replace("%data%", "maxine.ellah@gmail.com");
+  var formattedContact = HTMLemail.replace("%data%", bio.contacts.email);
   $("#topContacts").append(formattedContact);
-  formattedContact = HTMLgithub.replace("%data%", "maxine-ellah");
+  var formattedContact = HTMLgithub.replace("%data%", "maxine-ellah");
   $("#topContacts").append(formattedContact);
-  formattedContact = HTMLlocation.replace("%data%", "Wellington");
+  var formattedContact = HTMLlocation.replace("%data%", "Wellington");
   $("#topContacts").append(formattedContact);
-  formattedContact = HTMLblog.replace("%data%", result);
+  var formattedContact = HTMLblog.replace("%data%", result);
   $("#topContacts").append(formattedContact);
 }
 //ifstatement to display same contact info array, but in the footer of
-if (bio.contact.length > 0) {
 
-$("#footerContacts").append(HTMLcontactGeneric);
 
-  var blog = "http://maxine-ellah.github.io/";
-  var result = blog.link("http://maxine-ellah.github.io/");
-  var formattedContact = HTMLemail.replace("%data%", "maxine.ellah@gmail.com");
-  $("#lets-connect").append(formattedContact);
-  formattedContact = HTMLgithub.replace("%data%", "maxine-ellah");
-  $("#lets-connect").append(formattedContact);
-  formattedContact = HTMLlocation.replace("%data%", "Wellington");
-  $("#lets-connect").append(formattedContact);
-  formattedContact = HTMLblog.replace("%data%", result);
-  $("#lets-connect").append(formattedContact);
-}
 
 
 
