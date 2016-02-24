@@ -212,6 +212,9 @@ var bio = {
 
 //bio display function declaration
 bio.display = function() {
+
+  
+
   var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
   $("#header").prepend(formattedWelcome);
   var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
@@ -251,8 +254,7 @@ if (bio.contacts.length > 0) {
 
 $("#main").append(HTMLcontactGeneric);
 
-  var blog = "http://maxine-ellah.github.io/";
-  var result = blog.link("http://maxine-ellah.github.io/");
+  
   var formattedContact = HTMLemail.replace("%data%", bio.contacts.email);
   $("#topContacts").append(formattedContact);
   var formattedContact = HTMLgithub.replace("%data%", "maxine-ellah");

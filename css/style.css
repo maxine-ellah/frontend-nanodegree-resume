@@ -11,7 +11,7 @@ h5,
 h6 {
   padding:0;
   margin:0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Monda', sans-serif;
 }
 
 .clear-fix {
@@ -26,9 +26,10 @@ h6 {
 
 h1 {
   font-size: 40px;
-  color: #f5a623;
+  color: #a6ce7e;
   line-height: 48px;
   display: inline;
+  font-family: 'Varela Round', sans-serif;
 }
 
 h2 {
@@ -37,6 +38,7 @@ h2 {
   color: #999;
   line-height: 29px;
   padding: 10px;
+  font-family: 'Varela Round', sans-serif;
 }
 
 h3 {
@@ -44,6 +46,7 @@ h3 {
   font-size: 20px;
   color: #000;
   line-height: 22px;
+  font-family: 'Varela Round', sans-serif;
 }
 
 h4 {
@@ -51,6 +54,7 @@ h4 {
   font-size: 14px;
   color: #4a4a4a;
   line-height: 17px;
+  font-family: 'Monda', sans-serif;
 }
 
 h2,
@@ -118,18 +122,18 @@ a {
 }
 
 .gray {
-  background-color: #f3f3f3;
+  background-color: #ecec79;
   padding-bottom: 10px;
   clear:both;
 }
 
 .dark-gray {
-  background-color: #4a4a4a;
+  background-color: #ecec79;
 }
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
+  background-color: #996666;
 }
 
 .flex-box {
