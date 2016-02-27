@@ -17,7 +17,7 @@ var work = {
     "description":"I am occasionally a buddy for some cool people at ACTIVE."
   },
   {
-   "employer":"Sudanese Australian Integration Program",
+   "employer":"Sudanese Australian Integration Language Program",
     "title": "Volunteer",
     "dates": "March 2015-August 2015",
     "location": "Melbourne",
